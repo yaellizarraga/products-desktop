@@ -88,7 +88,7 @@ class Product:
           return
       self.message['text'] = ''
       name = self.tree.item(self.tree.selection())['text']
-      query = 'DELETE FROM product WHERE name = ?'
+      query = 'DELETE FROM product WHERE product = ?'
       self.run_query(query, (name, ))
       self.message['text'] = 'Record {} deleted Successfully'.format(name)
       self.get_products()
@@ -124,7 +124,7 @@ class Product:
       self.edit_wind.mainloop()
 
   def edit_records(self, new_name, name, new_price, old_price):
-    query = 'UPDATE product SET name = ?, price = ? WHERE name = ? AND price = ?'
+    query = 'UPDATE product SET product = ?, price = ? WHERE product = ? AND price = ?'
     parameters = (new_name, new_price,name, old_price)
     self.run_query(query, parameters)
     self.edit_wind.destroy()
